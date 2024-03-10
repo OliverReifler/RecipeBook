@@ -16,13 +16,13 @@ namespace RecipeBook.Domain.Interfaces
         /// </summary>
         /// <param name="ingredient"></param>
         /// <returns></returns>
-        Task<Ingredient> CreateIngredient(Ingredient ingredient);
+        Task<Ingredient> CreateIngredientAsync(Ingredient ingredient);
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<Recipe> GetRecipeById(int id);
+        Task<Recipe> GetRecipeByIdAsync(int id);
     }
 }

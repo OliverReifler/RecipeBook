@@ -14,7 +14,7 @@ namespace RecipeBook.Business.Services
 
         public async Task<Recipe> CreateRecipe(Recipe recipe)
         {
-            if (_efRepository.GetAll().Any(x => x.Name == recipe.Name))
+            if (_efRepository.GetAllRecipes().Any(x => x.Name == recipe.Name))
             {
                 throw new ArgumentException("Allready exists");
             }
@@ -23,9 +23,9 @@ namespace RecipeBook.Business.Services
             return recipe;
         }
 
-        public async Task<Ingredient> CreateIngredient(Ingredient ingredient)
+        public async Task<Ingredient> CreateIngredientAsync(Ingredient ingredient)
         {
-            if (_efRepository.GetAll().Any(x => x.Name == ingredient.Name))
+            if (_efRepository.GetAllIngredients().Any(x => x.Name == ingredient.Name))
             {
                 throw new ArgumentException("Allready exists");
             }
@@ -34,9 +34,11 @@ namespace RecipeBook.Business.Services
             return ingredient;
         }
 
-        public async Task<Recipe> GetRecipeById(int id)
+        public async Task<Recipe> GetRecipeByIdAsync(int id)
         {
-            Recipe? recipe = await _efRepository.GetByID(id);
+            Recipe recipe = await _efRepository.GetByIdAsync(id);
+
+            //Recipe recipe = await _efRepository.GetRecipeByIdAsync(id);
 
             if (recipe != null)
             {

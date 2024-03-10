@@ -10,9 +10,13 @@ namespace RecipeBook.Domain.Interfaces
 
         Task Delete(int id);
 
-        Task<T?> GetByID(int id);
+        Task<Recipe?> GetRecipeByIdAsync(int id);
 
-        IQueryable<T> GetAll();
+        Task<T?> GetByIdAsync(int id);
+
+        IQueryable<Ingredient> GetAllIngredients();
+
+        IQueryable<Recipe> GetAllRecipes();
 
         Task SaveChangesAsync();
     }

@@ -29,16 +29,21 @@ namespace RecipeBook.Database
 
         public async Task Delete(int id)
         {
-            _dataContext.Remove(GetByID(id));
+            _dataContext.Remove(await GetByIdAsync(id));
             await _dataContext.SaveChangesAsync();
         }
 
-        public IQueryable<T> GetAll()
+        //public IQueryable<T> GetAll()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        public async Task<Recipe?> GetRecipeByIdAsync(int id)
         {
-            return _dataContext.Set<T>();
+            return await _dataContext.Set<Recipe>().Where(x => x.Id == id).SingleOrDefaultAsync();
         }
 
-        public async Task<T?> GetByID(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
             return await _dataContext.Set<T>()
                 .Where(x => x.Id == id)
@@ -48,6 +53,16 @@ namespace RecipeBook.Database
         public async Task SaveChangesAsync()
         {
             await _dataContext.SaveChangesAsync();
+        }
+
+        public IQueryable<Ingredient> GetAllIngredients()
+        {
+            return _dataContext.Set<Ingredient>();
+        }
+
+        public IQueryable<Recipe> GetAllRecipes()
+        {
+            return _dataContext.Set<Recipe>();
         }
     }
 }

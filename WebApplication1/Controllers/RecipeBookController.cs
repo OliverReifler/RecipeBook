@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using RecipeBook.Business.Services;
 using RecipeBook.Domain.Entities;
+using RecipeBook.Domain.Interfaces;
 
 namespace WebApplication1.Controllers
 {
@@ -8,29 +8,29 @@ namespace WebApplication1.Controllers
     [Route("RecipeController")]
     public class RecipeBookController : ControllerBase
     {
-        private readonly RecipeBookService _recipeBookService;
+        private readonly IRecipeBookService _recipeBookService;
 
-        public RecipeBookController(RecipeBookService recipeBookService)
+        public RecipeBookController(IRecipeBookService recipeBookService)
         {
             _recipeBookService = recipeBookService;
         }
 
-        private readonly Recipe recipe = new() { Id = 1, Name = "Banana pancakes" };
-
-        //[HttpGet]
-        //[Route("TestAPI")]
-        //public async Task<IActionResult> Test()
-        //{
-        //    return Ok(recipe);
-        //}
+        private readonly Recipe recipe1 = new() { Id = 1, Name = "Banana pancakes" };
 
         [HttpGet]
-        [Route("GetRecipe/{Id}")]
+        [Route("TestAPI")]
+        public Recipe Test()
+        {
+            return recipe1;
+        }
+
+        [HttpGet]
+        [Route("GetRecipe")]
         public async Task<IActionResult> GetRecipe(int id)
         {
             try
             {
-                return Ok(await _recipeBookService.GetRecipeById(id));
+                return Ok(await _recipeBookService.GetRecipeByIdAsync(id));
             }
             catch (ArgumentException x) { return BadRequest(x.Message); }
         }
@@ -41,7 +41,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                return Ok(_recipeBookService.CreateRecipe(new Recipe() { Name = name }));
+                return Ok(await _recipeBookService.CreateRecipe(new Recipe() { Name = name }));
             }
             catch (ArgumentException x) { return BadRequest(x.Message); }
         }
@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                return Ok(_recipeBookService.CreateIngredient(new Ingredient { Name = name }));
+                return Ok(await _recipeBookService.CreateIngredientAsync(new Ingredient { Name = name }));
             }
             catch (ArgumentException x) { return BadRequest(x.Message); }
         }
