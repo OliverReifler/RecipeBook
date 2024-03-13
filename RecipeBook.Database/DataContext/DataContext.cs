@@ -37,12 +37,12 @@ namespace RecipeBook.Database
 
             //modelBuilder.Entity<Ingredient>().HasData(Banana, Cherry);
             //modelBuilder.Entity<Recipe>().HasData(recipe2, recipe1);
-            modelBuilder.Entity<Recipe>().HasMany(x => x.ListOfIngredients).WithMany().UsingEntity(j => j.ToTable("RecipeIngredients"));
+            modelBuilder.Entity<Recipe>().HasMany(x => x.Ingredients).WithMany().UsingEntity(j => j.ToTable("RecipeIngredients"));
             //base.OnModelCreating(modelBuilder);
 
             //modelBuilder.Entity<Phone>().Property(x => x.PriceExVat).HasPrecision(18, 2);
 
-            modelBuilder.Entity<Recipe>().Navigation(x => x.ListOfIngredients).AutoInclude();
+            modelBuilder.Entity<Recipe>().Navigation(x => x.Ingredients).AutoInclude();
         }
     }
 }

@@ -9,8 +9,9 @@ namespace RecipeBook.Domain.Entities
         public int Id { get; set; }
         public string? Name { get; set; }
 
-        public ICollection<Ingredient>? ListOfIngredients { get; set; }
+        public ICollection<Ingredient>? Ingredients { get; set; }
+        public string? Instructions { get; set; }
 
-        public string? Preperation { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
     }
 }

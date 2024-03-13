@@ -5,7 +5,7 @@ using RecipeBook.Domain.Interfaces;
 namespace WebApplication1.Controllers
 {
     [ApiController]
-    [Route("RecipeController")]
+    [Route("RecipeBookController")]
     public class RecipeBookController : ControllerBase
     {
         private readonly IRecipeBookService _recipeBookService;
@@ -13,26 +13,6 @@ namespace WebApplication1.Controllers
         public RecipeBookController(IRecipeBookService recipeBookService)
         {
             _recipeBookService = recipeBookService;
-        }
-
-        private readonly Recipe recipe1 = new() { Id = 1, Name = "Banana pancakes" };
-
-        [HttpGet]
-        [Route("TestAPI")]
-        public Recipe Test()
-        {
-            return recipe1;
-        }
-
-        [HttpPost]
-        [Route("AddIngredientToRecipe")]
-        public async Task<IActionResult> AddIngredientToRecipe(string ingredient, string recipe)
-        {
-            try
-            {
-                return Ok(await _recipeBookService.AddIngredientToRecipe(ingredient, recipe));
-            }
-            catch (Exception ex) { return BadRequest(ex.Message); }
         }
 
         [HttpGet]
@@ -46,26 +26,37 @@ namespace WebApplication1.Controllers
             catch (ArgumentException x) { return BadRequest(x.Message); }
         }
 
-        [HttpPost]
-        [Route("PostRecipe")]
-        public async Task<IActionResult> PostRecipe(string name)
+        [HttpGet]
+        [Route("GetAllRecipes")]
+        public async Task<IActionResult> GetAllRecipes()
         {
             try
             {
-                return Ok(await _recipeBookService.CreateRecipe(new Recipe() { Name = name }));
+                return Ok(await _recipeBookService.GetAllRecipes());
             }
             catch (ArgumentException x) { return BadRequest(x.Message); }
         }
 
         [HttpPost]
-        [Route("PostIngredient")]
-        public async Task<IActionResult> PostIngredient(string name)
+        [Route("PostRecipe")]
+        public async Task<IActionResult> PostRecipe(string name, List<string> ingredients)
         {
             try
             {
-                return Ok(await _recipeBookService.CreateIngredientAsync(new Ingredient { Name = name }));
+                return Ok(await _recipeBookService.CreateRecipeAsync(new Recipe() { Name = name }));
             }
             catch (ArgumentException x) { return BadRequest(x.Message); }
         }
+
+        //[HttpPost]
+        //[Route("PostIngredient")]
+        //public async Task<IActionResult> PostIngredient(string name)
+        //{
+        //    try
+        //    {
+        //        return Ok(await _recipeBookService.CreateIngredientAsync(new Ingredient { Name = name }));
+        //    }
+        //    catch (ArgumentException x) { return BadRequest(x.Message); }
+        //}
     }
 }

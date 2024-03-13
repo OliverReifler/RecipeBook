@@ -1,0 +1,13 @@
+﻿using RecipeBook.Domain.Entities;
+
+namespace RecipeBook.Domain.Interfaces
+{
+    public interface IIngredientService
+    {
+        Task<Ingredient> CreateIngredientAsync(Ingredient ingredient);
+
+        Task<IEnumerable<Ingredient>> GetAllIngredients();
+
+        Task<Ingredient> GetIngredientById(int id);
+    }
+}

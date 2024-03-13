@@ -1,13 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace RecipeBook.Database.Migrations
 {
     /// <inheritdoc />
-    public partial class InitiaCreate : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,6 +17,7 @@ namespace RecipeBook.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    RecipeId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -32,7 +32,8 @@ namespace RecipeBook.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Instructions = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,48 +44,56 @@ namespace RecipeBook.Database.Migrations
                 name: "RecipeIngredients",
                 columns: table => new
                 {
-                    ListOfIngredientsId = table.Column<int>(type: "int", nullable: false),
-                    RecipesId = table.Column<int>(type: "int", nullable: false)
+                    IngredientsId = table.Column<int>(type: "int", nullable: false),
+                    RecipeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeIngredients", x => new { x.ListOfIngredientsId, x.RecipesId });
+                    table.PrimaryKey("PK_RecipeIngredients", x => new { x.IngredientsId, x.RecipeId });
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_Ingredient_ListOfIngredientsId",
-                        column: x => x.ListOfIngredientsId,
+                        name: "FK_RecipeIngredients_Ingredient_IngredientsId",
+                        column: x => x.IngredientsId,
                         principalTable: "Ingredient",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecipeIngredients_Recipes_RecipesId",
-                        column: x => x.RecipesId,
+                        name: "FK_RecipeIngredients_Recipes_RecipeId",
+                        column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Ingredient",
-                columns: new[] { "Id", "Category", "Name" },
-                values: new object[,]
+            migrationBuilder.CreateTable(
+                name: "Review",
+                columns: table => new
                 {
-                    { 3, null, "Banana" },
-                    { 4, null, "Cherry" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Recipes",
-                columns: new[] { "Id", "Name" },
-                values: new object[,]
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RecipeId = table.Column<int>(type: "int", nullable: false),
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
                 {
-                    { 5, "recipe1" },
-                    { 6, "recipe2" }
+                    table.PrimaryKey("PK_Review", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Review_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeIngredients_RecipesId",
+                name: "IX_RecipeIngredients_RecipeId",
                 table: "RecipeIngredients",
-                column: "RecipesId");
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Review_RecipeId",
+                table: "Review",
+                column: "RecipeId");
         }
 
         /// <inheritdoc />
@@ -92,6 +101,9 @@ namespace RecipeBook.Database.Migrations
         {
             migrationBuilder.DropTable(
                 name: "RecipeIngredients");
+
+            migrationBuilder.DropTable(
+                name: "Review");
 
             migrationBuilder.DropTable(
                 name: "Ingredient");
