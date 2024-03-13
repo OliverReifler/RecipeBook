@@ -46,5 +46,17 @@ namespace RecipeBook.Business.Services
             }
             throw new ArgumentException("Doesnt Exist/not found");
         }
+
+        public async Task<Recipe> AddIngredientToRecipe(string ingredient, string recipe)
+        {
+            Ingredient i = new();
+            i = _efRepository.GetAllIngredients().First(ing => ing.Name == ingredient);
+            Recipe r = new();
+            r = _efRepository.GetAllRecipes().First(rec => rec.Name == recipe);
+
+            r.ListOfIngredients.Add(i);
+            _efRepository.SaveChangesAsync();
+            return r;
+        }
     }
 }

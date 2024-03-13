@@ -12,6 +12,6 @@ namespace RecipeBook.Domain.Entities
 
         public string? Category { get; set; }
 
-        public ICollection<Recipe>? Recipes { get; set; }
+        //public ICollection<Recipe>? Recipes { get; set; }
     }
 }

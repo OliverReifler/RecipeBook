@@ -24,6 +24,17 @@ namespace WebApplication1.Controllers
             return recipe1;
         }
 
+        [HttpPost]
+        [Route("AddIngredientToRecipe")]
+        public async Task<IActionResult> AddIngredientToRecipe(string ingredient, string recipe)
+        {
+            try
+            {
+                return Ok(await _recipeBookService.AddIngredientToRecipe(ingredient, recipe));
+            }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
         [HttpGet]
         [Route("GetRecipe")]
         public async Task<IActionResult> GetRecipe(int id)

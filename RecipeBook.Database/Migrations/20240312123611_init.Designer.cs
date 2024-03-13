@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeBook.Database;
 
@@ -10,9 +11,11 @@ using RecipeBook.Database;
 namespace RecipeBook.Database.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240312123611_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,12 +29,12 @@ namespace RecipeBook.Database.Migrations
                     b.Property<int>("ListOfIngredientsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int>("RecipesId")
                         .HasColumnType("int");
 
-                    b.HasKey("ListOfIngredientsId", "RecipeId");
+                    b.HasKey("ListOfIngredientsId", "RecipesId");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("RecipesId");
 
                     b.ToTable("RecipeIngredients", (string)null);
                 });
@@ -84,18 +87,6 @@ namespace RecipeBook.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Recipes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 6,
-                            Name = "recipe2"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "recipe1"
-                        });
                 });
 
             modelBuilder.Entity("IngredientRecipe", b =>
@@ -108,7 +99,7 @@ namespace RecipeBook.Database.Migrations
 
                     b.HasOne("RecipeBook.Domain.Entities.Recipe", null)
                         .WithMany()
-                        .HasForeignKey("RecipeId")
+                        .HasForeignKey("RecipesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

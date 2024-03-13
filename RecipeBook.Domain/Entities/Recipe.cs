@@ -10,5 +10,7 @@ namespace RecipeBook.Domain.Entities
         public string? Name { get; set; }
 
         public ICollection<Ingredient>? ListOfIngredients { get; set; }
+
+        public string? Preperation { get; set; }
     }
 }
