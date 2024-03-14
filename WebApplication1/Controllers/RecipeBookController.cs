@@ -41,11 +41,11 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Route("PostRecipe")]
-        public async Task<IActionResult> PostRecipe(string name, List<string> ingredients)
+        public async Task<IActionResult> PostRecipe(string name, List<Ingredient>? ingredients)
         {
             try
             {
-                return Ok(await _recipeBookService.CreateRecipeAsync(new Recipe() { Name = name }));
+                return Ok(await _recipeBookService.CreateRecipeAsync(new Recipe() { Name = name, Ingredients = ingredients }));
             }
             catch (ArgumentException x) { return BadRequest(x.Message); }
         }

@@ -12,7 +12,7 @@ using RecipeBook.Database;
 namespace RecipeBook.Database.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240314005847_init")]
+    [Migration("20240314160407_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -59,6 +59,28 @@ namespace RecipeBook.Database.Migrations
                     b.ToTable("Ingredient");
                 });
 
+            modelBuilder.Entity("RecipeBook.Domain.Entities.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ReviewId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReviewId");
+
+                    b.ToTable("Person");
+                });
+
             modelBuilder.Entity("RecipeBook.Domain.Entities.Recipe", b =>
                 {
                     b.Property<int>("Id")
@@ -89,11 +111,11 @@ namespace RecipeBook.Database.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PersonId")
+                    b.Property<int?>("RecipeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
+                    b.Property<string>("ReviewText")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -117,18 +139,28 @@ namespace RecipeBook.Database.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RecipeBook.Domain.Entities.Person", b =>
+                {
+                    b.HasOne("RecipeBook.Domain.Entities.Review", null)
+                        .WithMany("Persons")
+                        .HasForeignKey("ReviewId");
+                });
+
             modelBuilder.Entity("RecipeBook.Domain.Entities.Review", b =>
                 {
                     b.HasOne("RecipeBook.Domain.Entities.Recipe", null)
                         .WithMany("Reviews")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RecipeId");
                 });
 
             modelBuilder.Entity("RecipeBook.Domain.Entities.Recipe", b =>
                 {
                     b.Navigation("Reviews");
+                });
+
+            modelBuilder.Entity("RecipeBook.Domain.Entities.Review", b =>
+                {
+                    b.Navigation("Persons");
                 });
 #pragma warning restore 612, 618
         }
