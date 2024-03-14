@@ -28,9 +28,9 @@ namespace RecipeBook.Business.Services
             return _repository.GetAll().ToList();
         }
 
-        public async Task<Ingredient> GetIngredientById(int id)
+        public async Task<Ingredient> GetIngredientByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id) ?? throw new ArgumentNullException();
+            return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Doesnt Exist/not found");
         }
     }
 }

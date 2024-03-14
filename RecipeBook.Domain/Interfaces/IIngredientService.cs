@@ -8,6 +8,6 @@ namespace RecipeBook.Domain.Interfaces
 
         Task<IEnumerable<Ingredient>> GetAllIngredients();
 
-        Task<Ingredient> GetIngredientById(int id);
+        Task<Ingredient> GetIngredientByIdAsync(int id);
     }
 }
