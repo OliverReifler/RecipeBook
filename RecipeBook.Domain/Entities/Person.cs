@@ -1,6 +1,8 @@
-﻿namespace RecipeBook.Domain.Entities
+﻿using RecipeBook.Domain.Interfaces;
+
+namespace RecipeBook.Domain.Entities
 {
-    public record Person
+    public record Person : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
