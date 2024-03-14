@@ -12,7 +12,7 @@ using RecipeBook.Database;
 namespace RecipeBook.Database.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240313150645_init")]
+    [Migration("20240314005847_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -53,9 +53,6 @@ namespace RecipeBook.Database.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

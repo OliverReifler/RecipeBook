@@ -19,6 +19,12 @@ namespace RecipeBook.Database
             await _dataContext.AddAsync(entity);
             return entity;
         }
+        public async Task<T> UpdateAsync(T entity)
+        {
+            _dataContext.Update(entity);
+            await _dataContext.SaveChangesAsync();
+            return entity;
+        }
 
         public async Task Delete(int id)
         {

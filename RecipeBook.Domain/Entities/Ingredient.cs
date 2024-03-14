@@ -7,8 +7,7 @@ namespace RecipeBook.Domain.Entities
     {
         [Key]
         public int Id { get; set; }
-
-        public int RecipeId { get; set; }
+        //public List<int>? RecipeId { get; set; } = new List<int>();
         public string? Name { get; set; }
 
         public string? Category { get; set; }

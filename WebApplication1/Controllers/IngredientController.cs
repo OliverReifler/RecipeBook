@@ -46,5 +46,19 @@ namespace RecipeBookAPI.Controllers
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
+
+        //[HttpPost]
+        //[Route("AddIngredientToRecipe")]
+        //public async Task<IActionResult> UpdateIngredient(int ingredientId, int recipeId)
+        //{
+        //    try
+        //    {
+        //        Ingredient ingredient = await _ingredientService.GetIngredientByIdAsync(ingredientId);
+        //        ingredient.RecipeId.Add(recipeId);
+        //        await _ingredientService.UpdateIngredient(ingredient);
+        //        return Ok(ingredient);
+        //    }
+        //    catch (Exception ex) { return BadRequest(new ArgumentException(ex.Message)); }
+        //}
     }
 }

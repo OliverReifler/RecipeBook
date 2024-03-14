@@ -23,6 +23,13 @@ namespace RecipeBook.Business.Services
             return recipe;
         }
 
+        public async Task<Recipe> UpdateRecipeAsync(Recipe recipe)
+        {
+            await _repository.UpdateAsync(recipe);
+            await _repository.SaveChangesAsync();
+            return recipe;
+        }
+
         public async Task<IEnumerable<Recipe>> GetAllRecipes()
         {
             return _repository.GetAll().ToList();

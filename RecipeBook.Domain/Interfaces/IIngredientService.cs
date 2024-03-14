@@ -6,6 +6,8 @@ namespace RecipeBook.Domain.Interfaces
     {
         Task<Ingredient> CreateIngredientAsync(Ingredient ingredient);
 
+        Task<Ingredient?> UpdateIngredient(Ingredient ingredient);
+
         Task<IEnumerable<Ingredient>> GetAllIngredients();
 
         Task<Ingredient> GetIngredientByIdAsync(int id);

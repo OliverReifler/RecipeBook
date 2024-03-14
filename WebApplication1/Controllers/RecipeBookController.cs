@@ -9,10 +9,12 @@ namespace WebApplication1.Controllers
     public class RecipeBookController : ControllerBase
     {
         private readonly IRecipeBookService _recipeBookService;
+        private readonly IIngredientService _ingredientService;
 
-        public RecipeBookController(IRecipeBookService recipeBookService)
+        public RecipeBookController(IRecipeBookService recipeBookService, IIngredientService ingredientService)
         {
             _recipeBookService = recipeBookService;
+            _ingredientService = ingredientService;
         }
 
         [HttpGet]
@@ -46,6 +48,21 @@ namespace WebApplication1.Controllers
                 return Ok(await _recipeBookService.CreateRecipeAsync(new Recipe() { Name = name }));
             }
             catch (ArgumentException x) { return BadRequest(x.Message); }
+        }
+
+        [HttpPost]
+        [Route("AddIngredientToRecipe")]
+        public async Task<IActionResult> UpdateRecipe(int ingredientId, int recipeId)
+        {
+            try
+            {
+                Ingredient ingredient = await _ingredientService.GetIngredientByIdAsync(ingredientId);
+                Recipe recipe = await _recipeBookService.GetRecipeByIdAsync(recipeId);
+                recipe.Ingredients.Add(ingredient);
+                await _recipeBookService.UpdateRecipeAsync(recipe);
+                return Ok(recipe);
+            }
+            catch (Exception ex) { return BadRequest(new ArgumentException(ex.Message)); }
         }
 
         //[HttpPost]
