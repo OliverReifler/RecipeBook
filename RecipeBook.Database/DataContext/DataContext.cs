@@ -29,9 +29,11 @@ namespace RecipeBook.Database
         {
             modelBuilder.Entity<Recipe>().HasMany(x => x.Ingredients).WithMany().UsingEntity(j => j.ToTable("RecipeIngredients"));
             modelBuilder.Entity<Recipe>().HasMany(x => x.Reviews).WithOne();
+            modelBuilder.Entity<Recipe>().HasMany(x => x.Tags).WithMany().UsingEntity(j => j.ToTable("RecipeTags"));
 
             modelBuilder.Entity<Recipe>().Navigation(x => x.Ingredients).AutoInclude();
             modelBuilder.Entity<Recipe>().Navigation(x => x.Reviews).AutoInclude();
+            modelBuilder.Entity<Recipe>().Navigation(x => x.Tags).AutoInclude();
         }
     }
 }

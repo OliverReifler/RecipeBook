@@ -37,18 +37,7 @@ namespace RecipeBook.Business.Services
 
         public async Task<Recipe> GetRecipeByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Doesnt Exist/not found");
+            return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Recipe Id Doesnt Exist/not found");
         }
-
-        //public async Task<Ingredient> CreateIngredientAsync(Ingredient ingredient)
-        //{
-        //    if (_efRepository.GetAllIngredients().Any(x => x.Name == ingredient.Name))
-        //    {
-        //        throw new ArgumentException("Allready exists");
-        //    }
-        //    await _efRepository.CreateAsync(ingredient);
-        //    await _efRepository.SaveChangesAsync();
-        //    return ingredient;
-        //}
     }
 }

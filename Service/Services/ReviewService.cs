@@ -32,7 +32,7 @@ namespace RecipeBook.Business.Services
 
         public async Task<Review> GetReviewByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Doesnt Exist/not found");
+            return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Review Id Doesnt Exist/not found");
         }
 
         public async Task<Review> UpdateReviewAsync(Review review)

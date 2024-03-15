@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title =
 //        .AllowAnyMethod()));
 builder.Services.AddDbContext<DataContext>()
     .AddScoped<IRecipeBookService, RecipeBookService>()
+    .AddScoped<ITagService, TagService>()
     .AddScoped<IIngredientService, IngredientService>()
     .AddScoped<IReviewService, ReviewService>()
     .AddScoped(typeof(IRepository<>), typeof(EFRepository<>))

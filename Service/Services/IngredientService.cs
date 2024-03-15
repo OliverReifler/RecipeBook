@@ -35,7 +35,7 @@ namespace RecipeBook.Business.Services
 
         public async Task<Ingredient> GetIngredientByIdAsync(int id)
         {
-            return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Doesnt Exist/not found");
+            return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Ingredient Id Doesnt Exist/not found");
         }
     }
 }

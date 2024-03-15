@@ -10,11 +10,13 @@ namespace WebApplication1.Controllers
     {
         private readonly IRecipeBookService _recipeBookService;
         private readonly IIngredientService _ingredientService;
+        private readonly ITagService _tagService;
 
-        public RecipeBookController(IRecipeBookService recipeBookService, IIngredientService ingredientService)
+        public RecipeBookController(IRecipeBookService recipeBookService, IIngredientService ingredientService, ITagService tagService)
         {
             _recipeBookService = recipeBookService;
             _ingredientService = ingredientService;
+            _tagService = tagService;
         }
 
         [HttpGet]
@@ -52,7 +54,7 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Route("AddIngredientToRecipe")]
-        public async Task<IActionResult> UpdateRecipe(int ingredientId, int recipeId)
+        public async Task<IActionResult> AddIngredientToRecipe(int ingredientId, int recipeId)
         {
             try
             {
@@ -65,15 +67,19 @@ namespace WebApplication1.Controllers
             catch (Exception ex) { return BadRequest(new ArgumentException(ex.Message)); }
         }
 
-        //[HttpPost]
-        //[Route("PostIngredient")]
-        //public async Task<IActionResult> PostIngredient(string name)
-        //{
-        //    try
-        //    {
-        //        return Ok(await _recipeBookService.CreateIngredientAsync(new Ingredient { Name = name }));
-        //    }
-        //    catch (ArgumentException x) { return BadRequest(x.Message); }
-        //}
+        [HttpPost]
+        [Route("AddTagToRecipe")]
+        public async Task<IActionResult> AddTagToRecipe(int tagId, int recipeId)
+        {
+            try
+            {
+                Tag tag = await _tagService.GetByIdAsync(tagId);
+                Recipe recipe = await _recipeBookService.GetRecipeByIdAsync(recipeId);
+                recipe.Tags.Add(tag);
+                await _recipeBookService.UpdateRecipeAsync(recipe);
+                return Ok(recipe);
+            }
+            catch (Exception ex) { return BadRequest(new ArgumentException(ex.Message)); }
+        }
     }
 }
