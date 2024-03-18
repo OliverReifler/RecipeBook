@@ -9,12 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test", Version = "v1" }));
+builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test", Version = "v1" }))
 //.AddCors(o => o.AddPolicy("myCorsPolicy", builder =>
 //builder.AllowAnyHeader()
 //        .AllowAnyOrigin()
 //        .AllowAnyMethod()));
-builder.Services.AddDbContext<DataContext>()
+    .AddDbContext<DataContext>()
     .AddScoped<IRecipeBookService, RecipeBookService>()
     .AddScoped<ITagService, TagService>()
     .AddScoped<IIngredientService, IngredientService>()

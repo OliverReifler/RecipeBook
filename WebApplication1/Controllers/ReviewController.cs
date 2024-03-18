@@ -39,7 +39,7 @@ namespace RecipeBookAPI.Controllers
         {
             try
             {
-                return Ok(_reviewService.GetReviewByIdAsync(id));
+                return Ok(await _reviewService.GetReviewByIdAsync(id));
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }

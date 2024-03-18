@@ -19,7 +19,7 @@ namespace RecipeBookAPI.Controllers
         {
             try
             {
-                return Ok(_ingredientService.GetAllIngredients());
+                return Ok(await _ingredientService.GetAllIngredients());
             }
             catch (Exception ex) { return BadRequest(ex.Message); }
         }
