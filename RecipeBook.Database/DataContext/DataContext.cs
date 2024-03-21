@@ -47,13 +47,12 @@ namespace RecipeBook.Database
         //TODO:Create seeding after models updated
         private static List<Recipe> SeedRecipes()
         {
-            List<Recipe> Recipes = new()
-            {
+            List<Recipe> RecipesToBeSeeded = [
                 new () {Name = "Omelette", Id = 1, Instructions = "Crack open egg, Bake for 3-4 minutes on each side" },
                 new () {Name = "Sunny-Side-Up", Id = 2, Instructions = "Crack open egg, Bake for 6-8 minutes on one side"}
-            };
+            ];
 
-            return Recipes;
+            return RecipesToBeSeeded;
         }
 
         //return new List<Recipe>()

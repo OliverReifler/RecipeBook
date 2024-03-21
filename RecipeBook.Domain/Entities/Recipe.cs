@@ -15,5 +15,7 @@ namespace RecipeBook.Domain.Entities
         public ICollection<Review>? Reviews { get; set; }
 
         public ICollection<Tag>? Tags { get; set; }
+
+        public string[]? Images { get; set; }
     }
 }
