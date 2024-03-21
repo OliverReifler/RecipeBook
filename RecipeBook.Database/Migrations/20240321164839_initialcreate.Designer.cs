@@ -12,8 +12,8 @@ using RecipeBook.Database;
 namespace RecipeBook.Database.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240315001729_migration2")]
-    partial class migration2
+    [Migration("20240321164839_initialcreate")]
+    partial class initialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -132,18 +132,28 @@ namespace RecipeBook.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RecipeId");
-
                     b.ToTable("Tag");
+                });
+
+            modelBuilder.Entity("RecipeTag", b =>
+                {
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RecipeId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("RecipeTags", (string)null);
                 });
 
             modelBuilder.Entity("IngredientRecipe", b =>
@@ -175,18 +185,24 @@ namespace RecipeBook.Database.Migrations
                         .HasForeignKey("RecipeId");
                 });
 
-            modelBuilder.Entity("RecipeBook.Domain.Entities.Tag", b =>
+            modelBuilder.Entity("RecipeTag", b =>
                 {
                     b.HasOne("RecipeBook.Domain.Entities.Recipe", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("RecipeId");
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RecipeBook.Domain.Entities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RecipeBook.Domain.Entities.Recipe", b =>
                 {
                     b.Navigation("Reviews");
-
-                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("RecipeBook.Domain.Entities.Review", b =>

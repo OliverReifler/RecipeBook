@@ -21,7 +21,7 @@ namespace RecipeBook.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test");
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RecipeBook");
             }
         }
 
