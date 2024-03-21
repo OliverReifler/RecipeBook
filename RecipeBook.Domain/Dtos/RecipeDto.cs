@@ -1,4 +1,4 @@
-﻿namespace RecipeBook.Domain
+﻿namespace RecipeBook.Domain.Dtos
 {
     public class RecipeDto
     {

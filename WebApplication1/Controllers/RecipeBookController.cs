@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using RecipeBook.Business.Extentions;
-using RecipeBook.Domain;
+using RecipeBook.Domain.Dtos;
 using RecipeBook.Domain.Entities;
 using RecipeBook.Domain.Interfaces;
 

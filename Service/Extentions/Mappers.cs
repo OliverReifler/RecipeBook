@@ -1,4 +1,4 @@
-﻿using RecipeBook.Domain;
+﻿using RecipeBook.Domain.Dtos;
 using RecipeBook.Domain.Entities;
 
 namespace RecipeBook.Business.Extentions
