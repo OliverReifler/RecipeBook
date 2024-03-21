@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RecipeBook.Domain.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipeBook.Domain.Entities
 {
-    public class User
+    public class User : IEntity
     {
         //[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]

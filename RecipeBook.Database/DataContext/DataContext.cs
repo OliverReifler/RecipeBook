@@ -12,6 +12,7 @@ namespace RecipeBook.Database
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DataContext()
         {
@@ -26,7 +27,9 @@ namespace RecipeBook.Database
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RecipeBook");
+                //do i need this?
                 optionsBuilder.EnableSensitiveDataLogging();
+                optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             }
         }
 
@@ -54,20 +57,5 @@ namespace RecipeBook.Database
 
             return RecipesToBeSeeded;
         }
-
-        //return new List<Recipe>()
-        //{
-        //    new Recipe() {Name = "Omelette", Id = 1, Instructions = "Crack open egg, Bake for 3-4 minutes on each side",
-        //    Tags = new List<Tag>{new Tag(){Id = 1, Title = "Egg"} },
-        //    Ingredients = new List<Ingredient>(){
-        //        new Ingredient() { Id = 1, Name = "Egg", Category = "Animal Products"},
-        //        new Ingredient(){ Id = 2, Name = "Salt", Category = "Spices"}
-        //    },
-        //    Reviews = new List<Review>() {
-        //        new Review(){Id = 1, ReviewText = "Nothing Special", Persons = new List<Person> { new Person() { Id = 1, Name = "James Yolk"} }}
-        //    }
-        //}
-        //};
-        //}
     }
 }

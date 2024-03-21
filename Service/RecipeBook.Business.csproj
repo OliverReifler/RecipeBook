@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RecipeBook.Database\RecipeBook.Database.csproj" />
     <ProjectReference Include="..\RecipeBook.Domain\RecipeBook.Domain.csproj" />
   </ItemGroup>
 
