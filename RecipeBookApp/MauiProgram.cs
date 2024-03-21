@@ -21,6 +21,7 @@ namespace RecipeBookApp
 #endif
             builder.Services.AddSingleton<MainPage>()
                 .AddSingleton<MainViewModel>()
+                .AddSingleton<IConnectivity>(Connectivity.Current)
                 .AddTransient<DetailPage>()
                 .AddTransient<DetailViewModel>();
             return builder.Build();

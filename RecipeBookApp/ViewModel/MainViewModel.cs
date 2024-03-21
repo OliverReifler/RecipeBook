@@ -6,9 +6,12 @@ namespace RecipeBookApp.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        public MainViewModel()
+        private IConnectivity connectivity;
+
+        public MainViewModel(IConnectivity connectivity)
         {
             Items = new ObservableCollection<string>();
+            this.connectivity = connectivity;
         }
 
         [ObservableProperty]
@@ -18,10 +21,15 @@ namespace RecipeBookApp.ViewModel
         private string text;
 
         [RelayCommand]
-        private void Add()
+        private async Task Add()
         {
             if (string.IsNullOrWhiteSpace(Text)) return;
 
+            if (connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await Shell.Current.DisplayAlert("Connection Issue", "You have no internet connection", "OK");
+                return;
+            }
             Items.Add(Text);
             Text = string.Empty;
         }
