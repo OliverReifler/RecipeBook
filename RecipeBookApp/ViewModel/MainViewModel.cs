@@ -31,5 +31,11 @@ namespace RecipeBookApp.ViewModel
         {
             Items.Remove(s);
         }
+
+        [RelayCommand]
+        private async Task Tap(string s)
+        {
+            await Shell.Current.GoToAsync($"{nameof(DetailPage)}?Text={s}");
+        }
     }
 }

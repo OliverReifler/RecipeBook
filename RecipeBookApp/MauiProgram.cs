@@ -21,7 +21,8 @@ namespace RecipeBookApp
 #endif
             builder.Services.AddSingleton<MainPage>()
                 .AddSingleton<MainViewModel>()
-                .AddSingleton<DetailViewModel>();
+                .AddTransient<DetailPage>()
+                .AddTransient<DetailViewModel>();
             return builder.Build();
         }
     }
