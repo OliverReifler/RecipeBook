@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using RecipeBook.Business.Extentions;
+using RecipeBook.Domain;
 using RecipeBook.Domain.Entities;
 using RecipeBook.Domain.Interfaces;
 
@@ -25,7 +27,9 @@ namespace WebApplication1.Controllers
         {
             try
             {
-                return Ok(await _recipeBookService.GetRecipeByIdAsync(id));
+                Recipe recipe = await _recipeBookService.GetRecipeByIdAsync(id);
+                RecipeDto recipeDto = recipe.MapToRecipeDto();
+                return Ok(recipeDto);
             }
             catch (ArgumentException x) { return BadRequest(x.Message); }
         }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeBook.Database;
 
@@ -11,9 +12,11 @@ using RecipeBook.Database;
 namespace RecipeBook.Database.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240321191143_SeedRecipes4")]
+    partial class SeedRecipes4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,12 +115,6 @@ namespace RecipeBook.Database.Migrations
                             Id = 1,
                             Instructions = "Crack open egg, Bake for 3-4 minutes on each side",
                             Name = "Omelette"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Instructions = "Crack open egg, Bake for 6-8 minutes on one side",
-                            Name = "Sunny-Side-Up"
                         });
                 });
 
