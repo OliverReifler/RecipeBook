@@ -24,8 +24,27 @@ namespace RecipeBook.Business.Services
             if (DbUser.Password != loginRequestDto.Password)
                 return ApiResponse<AuthResponseDto>.Fail("Incorrect Password");
 
-            var token = _tokenService.GenerateJwt(DbUser);
+            string token = _tokenService.GenerateJwt(DbUser);
             return ApiResponse<AuthResponseDto>.Success(new AuthResponseDto(DbUser.Id, DbUser.Name, token));
+        }
+
+        public async Task<ApiResponse<AuthResponseDto>> RegisterAsync(RegisterRequestDto registerRequestDto)
+        {
+            User existingUser = await _userRepository.GetAll().FirstOrDefaultAsync(u => u.Email == registerRequestDto.Email);
+
+            if (existingUser is not null)
+                return ApiResponse<AuthResponseDto>.Fail("Email allready eists");
+            User user = new User
+            {
+                Email = registerRequestDto.Email,
+                Password = registerRequestDto.Password,
+                Name = registerRequestDto.Name,
+            };
+            await _userRepository.CreateAsync(user);
+            await _userRepository.SaveChangesAsync();
+            string token = _tokenService.GenerateJwt(user);
+
+            return ApiResponse<AuthResponseDto>.Success(new AuthResponseDto(user.Id, user.Name, token));
         }
     }
 }
