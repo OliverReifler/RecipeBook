@@ -5,7 +5,7 @@ using RecipeBook.Domain.Interfaces;
 
 namespace RecipeBook.Business.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         private readonly TokenService _tokenService;
         private readonly IRepository<User> _userRepository;
