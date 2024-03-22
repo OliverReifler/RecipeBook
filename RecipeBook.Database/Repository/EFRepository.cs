@@ -38,11 +38,6 @@ namespace RecipeBook.Database
             return _dataContext.Set<T>();
         }
 
-        public IQueryable<T> GetTenLatest()
-        {
-            return _dataContext.Set<T>().TakeLast<T>(10);
-        }
-
         public async Task<T?> GetByIdAsync(int id)
         {
             return await _dataContext.Set<T>().Where(x => x.Id == id).SingleOrDefaultAsync();

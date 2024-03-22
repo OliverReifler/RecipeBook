@@ -1,5 +1,4 @@
-﻿using RecipeBook.Domain.Dtos;
-using RecipeBook.Domain.Entities;
+﻿using RecipeBook.Domain.Entities;
 using RecipeBook.Domain.Interfaces;
 
 namespace RecipeBook.Business.Services
@@ -7,10 +6,12 @@ namespace RecipeBook.Business.Services
     public class RecipeBookService : IRecipeBookService
     {
         private readonly IRepository<Recipe> _repository;
+        private readonly IRecipeRepository _recipeRepository;
 
-        public RecipeBookService(IRepository<Recipe> repository)
+        public RecipeBookService(IRepository<Recipe> repository, IRecipeRepository recipeRepository)
         {
             _repository = repository;
+            _recipeRepository = recipeRepository;
         }
 
         public async Task<Recipe> CreateRecipeAsync(Recipe recipe)
@@ -41,9 +42,9 @@ namespace RecipeBook.Business.Services
             return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Recipe Id Doesnt Exist/not found");
         }
 
-        public async Task<AuthResponseDto<RecipeListDto>> GetTenLatestRecipes()
+        public async Task<IEnumerable<Recipe>> GetLatestRecipes(int count)
         {
-            await _repository.Get
+            return _recipeRepository.GetLatestRecipes(count);
         }
     }
 }

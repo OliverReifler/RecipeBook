@@ -34,7 +34,7 @@ namespace RecipeBook.Business.Services
 
             if (existingUser is not null)
                 return ApiResponse<AuthResponseDto>.Fail("Email allready eists");
-            User user = new User
+            User user = new()
             {
                 Email = registerRequestDto.Email,
                 Password = registerRequestDto.Password,
