@@ -1,4 +1,4 @@
 ﻿namespace RecipeBook.Domain.Dtos
 {
-    public record AuthResponseDto(int userId, string Name, string Token);
+    public record AuthResponseDto(int UserId, string Name, string Token);
 }
