@@ -1,9 +1,9 @@
 namespace RecipeBookApp.Pages;
 
-public partial class Login : ContentPage
+public partial class LoginPage : ContentPage
 {
-	public Login()
-	{
-		InitializeComponent();
-	}
+    public LoginPage()
+    {
+        InitializeComponent();
+    }
 }
