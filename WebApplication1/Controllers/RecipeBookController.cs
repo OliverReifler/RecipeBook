@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RecipeBook.Business.Extentions;
 using RecipeBook.Domain.Dtos;
@@ -35,7 +36,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllRecipes")]
+        [Route("GetAllRecipes"), Authorize]
         public async Task<IActionResult> GetAllRecipes()
         {
             try

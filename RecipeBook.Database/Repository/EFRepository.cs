@@ -2,7 +2,7 @@
 using RecipeBook.Domain.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 
-namespace RecipeBook.Database
+namespace RecipeBook.Database.Repository
 {
     [ExcludeFromCodeCoverage]
     public class EFRepository<T> : IRepository<T> where T : class, IEntity

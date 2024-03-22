@@ -12,6 +12,8 @@ namespace RecipeBook.Domain.Interfaces
 
         Task<IEnumerable<Recipe>> GetAllRecipes();
 
+        Task<IEnumerable<Recipe>> GetLatestRecipes(int count);
+
         //Task<Ingredient> CreateIngredientAsync(Ingredient ingredient);
     }
 }

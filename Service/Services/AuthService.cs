@@ -30,7 +30,7 @@ namespace RecipeBook.Business.Services
 
         public async Task<ApiResponse<AuthResponseDto>> RegisterAsync(RegisterRequestDto registerRequestDto)
         {
-            User existingUser = await _userRepository.GetAll().FirstOrDefaultAsync(u => u.Email == registerRequestDto.Email);
+            User? existingUser = await _userRepository.GetAll().SingleOrDefaultAsync(u => u.Email == registerRequestDto.Email);
 
             if (existingUser is not null)
                 return ApiResponse<AuthResponseDto>.Fail("Email allready eists");

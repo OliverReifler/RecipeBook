@@ -16,7 +16,9 @@ namespace RecipeBook.Database.Repository
 
         public IQueryable<Recipe> GetLatestRecipes(int count)
         {
-            return _context.Recipes.TakeLast(count).AsQueryable();
+            return _context.Set<Recipe>().OrderBy(r => r.Id).TakeLast(count);
+            //TODO: Question: whats the difference?
+            //return _context.Recipes.TakeLast(count).AsQueryable();
         }
     }
 }

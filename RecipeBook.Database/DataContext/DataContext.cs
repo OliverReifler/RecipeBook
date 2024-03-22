@@ -29,7 +29,7 @@ namespace RecipeBook.Database
                 optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RecipeBook");
                 //do i need this?
                 optionsBuilder.EnableSensitiveDataLogging();
-                optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                //optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             }
         }
 
@@ -45,6 +45,7 @@ namespace RecipeBook.Database
             modelBuilder.Entity<Review>().Navigation(x => x.Persons).AutoInclude();
 
             modelBuilder.Entity<Recipe>().HasData(SeedRecipes());
+            modelBuilder.Entity<User>().HasData([new User() { Id = 1, Name = "Oliver", Email = "oliver@example.com", Password = "123" }]);
         }
 
         //TODO:Create seeding after models updated
