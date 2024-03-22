@@ -19,7 +19,7 @@ namespace RecipeBookApp
             if (Preferences.Default.ContainsKey(UIconstants.OnboardingShown))
                 await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
             else
-                await Shell.Current.GoToAsync($"//{nameof(RecipesPage)}");
+                await Shell.Current.GoToAsync($"//{nameof(OnboardingPage)}");
         }
     }
 }

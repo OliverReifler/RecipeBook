@@ -7,7 +7,7 @@ namespace RecipeBookApp.ViewModel
     public partial class OnboardingViewModel : ObservableObject
     {
         [RelayCommand]
-        private static async Task SkipToHomePage()
+        private async Task NavigateToHomePage()
         {
             await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
         }

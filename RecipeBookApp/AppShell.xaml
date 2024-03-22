@@ -24,6 +24,12 @@
         Route="LoginPage"
         Shell.TabBarIsVisible="False"
         Shell.NavBarIsVisible="False" />
+    <ShellContent
+        Title="Detail"
+        ContentTemplate="{DataTemplate pages:DetailPage}"
+        Route="DetailPage"
+        Shell.TabBarIsVisible="False"
+        Shell.NavBarIsVisible="False" />
     <TabBar>
         <ShellContent
         Title="Home"

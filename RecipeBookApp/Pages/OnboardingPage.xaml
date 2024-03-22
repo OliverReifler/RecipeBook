@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:RecipeBookApp.Pages"
              x:Class="RecipeBookApp.Pages.OnboardingPage"
              Title="Onboarding"
              xmlns:viewmodel="clr-namespace:RecipeBookApp.ViewModel"
              x:DataType="viewmodel:OnboardingViewModel">
 
-    <VerticalStackLayout>
+    <StackLayout>
         <Label
             Text="Onboarding!"
             VerticalOptions="Center"
             HorizontalOptions="Center" />
         <Button
-            Text="Skip" />
-        <!--Command="{Binding SkipToHomePage}" />-->
-    </VerticalStackLayout>
+            Text="Skip"
+            Command="{Binding NavigateToHomePageCommand}" />
+    </StackLayout>
 </ContentPage>
