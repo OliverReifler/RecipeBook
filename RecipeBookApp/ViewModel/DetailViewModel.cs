@@ -10,7 +10,7 @@ namespace RecipeBookApp.ViewModel
         private string? text;
 
         [RelayCommand]
-        private async Task GoToPreviousPage()
+        private static async Task GoToPreviousPage()
         {
             await Shell.Current.GoToAsync("..");
         }

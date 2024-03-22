@@ -5,10 +5,35 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:RecipeBookApp"
     Shell.FlyoutBehavior="Disabled"
+    xmlns:pages="clr-namespace:RecipeBookApp.Pages"
     Title="RecipeBookApp">
 
     <ShellContent
-        Title="Home"
+        Title="Main"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <ShellContent
+        Title="Onboarding"
+        ContentTemplate="{DataTemplate pages:OnboardingPage}"
+        Route="OnboardingPage"
+        Shell.TabBarIsVisible="False"
+        Shell.NavBarIsVisible="False" />
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Route="LoginPage"
+        Shell.TabBarIsVisible="False"
+        Shell.NavBarIsVisible="False" />
+    <TabBar>
+        <ShellContent
+        Title="Home"
+        Icon="appicon"
+        ContentTemplate="{DataTemplate pages:HomePage}"
+        Route="HomePage" />
+        <ShellContent
+        Title="Recipes"
+        Icon="appicon"
+        ContentTemplate="{DataTemplate pages:RecipesPage}"
+        Route="RecipesPage" />
+    </TabBar>
 </Shell>

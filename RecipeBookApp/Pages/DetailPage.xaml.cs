@@ -1,6 +1,6 @@
 using RecipeBookApp.ViewModel;
 
-namespace RecipeBookApp;
+namespace RecipeBookApp.Pages;
 
 public partial class DetailPage : ContentPage
 {

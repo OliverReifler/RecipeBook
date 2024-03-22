@@ -1,12 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using RecipeBookApp.Pages;
 using System.Collections.ObjectModel;
 
 namespace RecipeBookApp.ViewModel
 {
     public partial class MainViewModel : ObservableObject
     {
-        private IConnectivity connectivity;
+        private readonly IConnectivity connectivity;
 
         public MainViewModel(IConnectivity connectivity)
         {

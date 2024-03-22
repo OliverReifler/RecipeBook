@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using RecipeBookApp.Pages;
 using RecipeBookApp.ViewModel;
 
 namespace RecipeBookApp

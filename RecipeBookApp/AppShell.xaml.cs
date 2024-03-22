@@ -1,4 +1,6 @@
-﻿namespace RecipeBookApp
+﻿using RecipeBookApp.Pages;
+
+namespace RecipeBookApp
 {
     public partial class AppShell : Shell
     {
