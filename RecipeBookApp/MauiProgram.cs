@@ -25,8 +25,14 @@ namespace RecipeBookApp
             builder.Services.AddSingleton<MainPage>()
                 .AddSingleton<MainViewModel>()
                 .AddSingleton<IConnectivity>(Connectivity.Current)
+                .AddTransient<OnboardingPage>()
+                .AddTransient<OnboardingViewModel>()
                 .AddTransient<DetailPage>()
-                .AddTransient<DetailViewModel>();
+                .AddTransient<DetailViewModel>()
+                .AddTransient<LoginPage>()
+                .AddTransient<HomePage>()
+                .AddTransient<RecipesPage>();
+
             return builder.Build();
         }
     }

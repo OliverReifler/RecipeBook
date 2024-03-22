@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using RecipeBookApp.Pages;
 
 namespace RecipeBookApp.ViewModel
 {
@@ -8,7 +9,7 @@ namespace RecipeBookApp.ViewModel
         [RelayCommand]
         private static async Task SkipToHomePage()
         {
-            await Shell.Current.GoToAsync("Home");
+            await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
         }
     }
 }
