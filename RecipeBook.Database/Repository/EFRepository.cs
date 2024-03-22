@@ -19,6 +19,7 @@ namespace RecipeBook.Database
             await _dataContext.AddAsync(entity);
             return entity;
         }
+
         public async Task<T> UpdateAsync(T entity)
         {
             _dataContext.Update(entity);
@@ -35,6 +36,11 @@ namespace RecipeBook.Database
         public IQueryable<T> GetAll()
         {
             return _dataContext.Set<T>();
+        }
+
+        public IQueryable<T> GetTenLatest()
+        {
+            return _dataContext.Set<T>().TakeLast<T>(10);
         }
 
         public async Task<T?> GetByIdAsync(int id)

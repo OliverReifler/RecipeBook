@@ -1,4 +1,5 @@
-﻿using RecipeBook.Domain.Entities;
+﻿using RecipeBook.Domain.Dtos;
+using RecipeBook.Domain.Entities;
 using RecipeBook.Domain.Interfaces;
 
 namespace RecipeBook.Business.Services
@@ -38,6 +39,11 @@ namespace RecipeBook.Business.Services
         public async Task<Recipe> GetRecipeByIdAsync(int id)
         {
             return await _repository.GetByIdAsync(id) ?? throw new ArgumentException("Recipe Id Doesnt Exist/not found");
+        }
+
+        public async Task<AuthResponseDto<RecipeListDto>> GetTenLatestRecipes()
+        {
+            await _repository.Get
         }
     }
 }

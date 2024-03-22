@@ -8,6 +8,8 @@
 
         IQueryable<T> GetAll();
 
+        IQueryable<T> GetTenLatest();
+
         Task<T?> GetByIdAsync(int id);
 
         Task Delete(int id);
