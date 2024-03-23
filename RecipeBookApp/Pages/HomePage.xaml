@@ -15,7 +15,7 @@
             Command="{Binding GoToOnboardingCommand}" />
         <Image Source="recipes_chefhat.png" />
         <Label Text="Welcome tot the Recipe Book App"
-               HeightRequest="300"/>
+               HeightRequest="300" />
         <Button
             Text="Go to previous"
             Command="{Binding GoToPreviousCommand}" />

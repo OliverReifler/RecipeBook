@@ -6,13 +6,47 @@
              xmlns:viewmodel="clr-namespace:RecipeBookApp.ViewModel"
              x:DataType="viewmodel:OnboardingViewModel">
 
-    <StackLayout>
+    <Grid RowDefinitions="*, *, 0.2*"
+          ColumnDefinitions="*, *"
+          RowSpacing="5"
+          ColumnSpacing="5"
+          Padding="15">
+        <Border
+            Grid.ColumnSpan="2"
+            Grid.Row="0"
+            StrokeShape="RoundRectangle 150"
+            StrokeThickness="25"
+            Stroke="{StaticResource Primary}"
+            HeightRequest="250"
+            WidthRequest="250"
+            VerticalOptions="Center">
+            <Image
+                Grid.Row="0"
+                Source="recipes_chefhat.png"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Aspect="AspectFill" />
+        </Border>
+        <Button 
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="Login"
+            VerticalOptions="End"/>
+        <Button 
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="Register"
+            VerticalOptions="End"/>
         <Label
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
             Text="Onboarding!"
-            VerticalOptions="Center"
+            VerticalOptions="Start"
             HorizontalOptions="Center" />
         <Button
-            Text="Navigate to Home page"
+            Grid.ColumnSpan="2"
+            Grid.Row="2"
+            Text="Continue without login"
             Command="{Binding NavigateToHomePageCommand}" />
-    </StackLayout>
+    </Grid>
 </ContentPage>
