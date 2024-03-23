@@ -4,9 +4,9 @@ namespace RecipeBookApp.Pages;
 
 public partial class RecipesPage : ContentPage
 {
-    public RecipesPage(MainViewModel vm)
+    public RecipesPage(MainViewModel Mvm)
     {
-        InitializeComponent();
-        BindingContext = vm;
+        //InitializeComponent();
+        BindingContext = Mvm;
     }
 }

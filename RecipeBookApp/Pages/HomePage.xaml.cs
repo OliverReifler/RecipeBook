@@ -1,9 +1,12 @@
+using RecipeBookApp.ViewModel;
+
 namespace RecipeBookApp.Pages;
 
 public partial class HomePage : ContentPage
 {
-    public HomePage()
+    public HomePage(HomeViewModel Hvm)
     {
-        InitializeComponent();
+        //InitializeComponent();
+        BindingContext = Hvm;
     }
 }
