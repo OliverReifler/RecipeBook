@@ -12,7 +12,7 @@
             VerticalOptions="Center"
             HorizontalOptions="Center" />
         <Button
-            Text="Skip"
+            Text="Navigate to Home page"
             Command="{Binding NavigateToHomePageCommand}" />
     </StackLayout>
 </ContentPage>

@@ -6,7 +6,7 @@ public partial class HomePage : ContentPage
 {
     public HomePage(HomeViewModel Hvm)
     {
-        //InitializeComponent();
+        InitializeComponent();
         BindingContext = Hvm;
     }
 }

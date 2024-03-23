@@ -6,7 +6,7 @@ public partial class RecipesPage : ContentPage
 {
     public RecipesPage(MainViewModel Mvm)
     {
-        //InitializeComponent();
+        InitializeComponent();
         BindingContext = Mvm;
     }
 }

@@ -9,7 +9,13 @@ namespace RecipeBookApp.ViewModel
         [RelayCommand]
         private static async Task GoToOnboarding()
         {
-            await Shell.Current.GoToAsync($"{nameof(OnboardingPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(OnboardingPage)}");
+        }
+        //TODO:Doesnt work. the details page method does. why?
+        [RelayCommand]
+        private static async Task GoToPrevious()
+        {
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

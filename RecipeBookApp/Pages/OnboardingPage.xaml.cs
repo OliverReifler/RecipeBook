@@ -6,7 +6,7 @@ public partial class OnboardingPage : ContentPage
 {
     public OnboardingPage(OnboardingViewModel vm)
     {
-        //InitializeComponent();
+        InitializeComponent();
         BindingContext = vm;
     }
 }
