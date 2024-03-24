@@ -8,9 +8,6 @@ namespace RecipeBookAPI.Controllers
     [Route("AuthController")]
     public class AuthController : ControllerBase
     {
-        //https://www.youtube.com/watch?v=1js5U3gWamg
-        //54:50
-
         private readonly IAuthService _authService;
 
         public AuthController(IAuthService authService)
@@ -19,23 +16,15 @@ namespace RecipeBookAPI.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginRequestDto loginDto)
+        public async Task<ApiResponse<AuthResponseDto>> Login(LoginRequestDto loginDto)
         {
-            try
-            {
-                return Ok(await _authService.LoginAsync(loginDto));
-            }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            return await _authService.LoginAsync(loginDto);
         }
 
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register(RegisterRequestDto registerDto)
+        [HttpPost("register")]
+        public async Task<ApiResponse<AuthResponseDto>> Register(RegisterRequestDto registerDto)
         {
-            try
-            {
-                return Ok(await _authService.RegisterAsync(registerDto));
-            }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            return await _authService.RegisterAsync(registerDto);
         }
     }
 }

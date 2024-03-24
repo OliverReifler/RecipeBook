@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Logging;
 using RecipeBookApp.Models;
 using RecipeBookApp.Pages;
+using RecipeBookApp.Services;
 using RecipeBookApp.ViewModel;
+using Refit;
 
 namespace RecipeBookApp
 {
@@ -38,7 +40,15 @@ namespace RecipeBookApp
                 .AddTransient<RecipeViewModel>()
                 .AddTransient<LoginRegisterModel>();
 
+            ConfigureRefit(builder.Services);
+
             return builder.Build();
+        }
+
+        private static void ConfigureRefit(IServiceCollection services)
+        {
+            services.AddRefitClient<IAuthApi>()
+                .ConfigureHttpClient(httpClient => httpClient.BaseAddress = new Uri(AppConstants.BaseApiUrl));
         }
     }
 }
