@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipeBookApp.Pages.LoginPage"
-             Title="Login">
+             Title="Login"
+             BackgroundColor="{StaticResource BgColor}">
 
+   
     <Grid RowDefinitions="2*, 3*">
         <Border
             Grid.Row="0"
@@ -18,7 +20,25 @@
                 Source="chef.png"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
+                HeightRequest="250"
+                WidthRequest="250"
                 Aspect="AspectFill" />
         </Border>
+        <ScrollView Grid.Row="1" Padding="15">
+            <VerticalStackLayout Spacing="30">
+                <Grid ColumnDefinitions="*,auto">
+                    <Label Grid.Column="0" Text="Login" FontSize="30" FontAttributes="Bold" LineHeight="1.2"/>
+                    <Label Grid.Column="1" Text="Switch to Register" VerticalOptions="Center" HorizontalOptions="End" Padding="5" FontAttributes="Italic" TextDecorations="Underline"/>
+                </Grid>
+                <VerticalStackLayout>
+                    <Entry Placeholder="Enter name" PlaceholderColor="{StaticResource Secondary}"/>
+                    <Entry Placeholder="Enter email" PlaceholderColor="{StaticResource Secondary}" Keyboard="Email"/>
+                    <Entry Placeholder="Enter password" PlaceholderColor="{StaticResource Secondary}" IsPassword="True"/>
+                    <Button Text="Login" Style="{StaticResource btnPrimary}"/>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
     </Grid>
 </ContentPage>
+
+//https://www.youtube.com/watch?v=1js5U3gWamg 2:39:00

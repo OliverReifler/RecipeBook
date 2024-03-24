@@ -2,8 +2,7 @@
 
 namespace RecipeBookApp.ViewModel
 {
-    public partial class OnboardingViewModel : ObservableObject
+    public partial class LoginViewModel : ObservableObject
     {
-
     }
 }

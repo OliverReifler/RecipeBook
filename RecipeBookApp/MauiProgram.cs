@@ -30,6 +30,7 @@ namespace RecipeBookApp
                 .AddTransient<DetailPage>()
                 .AddTransient<DetailViewModel>()
                 .AddTransient<LoginPage>()
+                .AddTransient<LoginViewModel>()
                 .AddTransient<HomePage>()
                 .AddTransient<HomeViewModel>()
                 .AddTransient<RecipesPage>()
