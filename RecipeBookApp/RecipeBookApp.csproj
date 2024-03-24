@@ -56,6 +56,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\chefhat2.png" />
+	  <None Remove="Resources\Images\chefmoustache.png" />
 	  <None Remove="Resources\Images\recipes_ChefHat.png" />
 	  <None Remove="Resources\Images\recipes_folder_large.png" />
 	  <None Remove="Resources\Images\recipes_folder_small.png" />

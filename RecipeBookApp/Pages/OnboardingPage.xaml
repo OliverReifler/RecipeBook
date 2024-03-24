@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:RecipeBookApp.ViewModel"
              x:DataType="viewmodel:OnboardingViewModel">
 
-    <Grid RowDefinitions="*, *, 0.2*"
+    <Grid RowDefinitions="*, *, auto"
           ColumnDefinitions="*, *"
           RowSpacing="5"
           ColumnSpacing="5"
@@ -22,35 +22,51 @@
             VerticalOptions="Center">
             <Image
                 Grid.Row="0"
-                Source="recipes_chefhat.png"
+                Source="chefmoustache.png"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Aspect="AspectFill" />
-            <Border.Shadow>
-                <Shadow Brush="{StaticResource Primary}"
-                Radius="250"/>
-            </Border.Shadow>
         </Border>
-        <Button 
+        <Grid Grid.Row="1"
+              Grid.ColumnSpan="2"
+              Padding="15"
+              RowDefinitions="*,auto">
+            <VerticalStackLayout Grid.Row="0" Spacing="30">
+                <Label
+                Text="Never loose another recipe ever again!"
+                TextColor="{StaticResource Primary}"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                LineHeight="1.1" />
+                <Label
+                Text="A place to store all your favorite recipes and keep notes"
+                TextColor="{StaticResource Primary}"
+                FontSize="22"
+                FontAttributes="Italic"
+                HorizontalTextAlignment="Center"
+                LineHeight="0.9" />
+            </VerticalStackLayout>
+        </Grid>
+        <Button
             Grid.Row="1"
             Grid.Column="0"
             Text="Login"
-            VerticalOptions="End"/>
-        <Button 
+            FontAttributes="Bold"
+            VerticalOptions="End" 
+            Command="{Binding NavigateToLoginPageCommand}" />
+        <Button
             Grid.Row="1"
             Grid.Column="1"
             Text="Register"
-            VerticalOptions="End"/>
-        <Label
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Text="Onboarding!"
-            VerticalOptions="Start"
-            HorizontalOptions="Center" />
+            FontAttributes="Bold"
+            VerticalOptions="End" 
+            Command="{Binding NavigateToRegisterPageCommand}" />
         <Button
             Grid.ColumnSpan="2"
             Grid.Row="2"
             Text="Continue without login"
+            FontAttributes="Bold"
             Command="{Binding NavigateToHomePageCommand}" />
     </Grid>
 </ContentPage>

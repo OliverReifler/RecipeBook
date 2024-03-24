@@ -11,5 +11,17 @@ namespace RecipeBookApp.ViewModel
         {
             await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
         }
+
+        [RelayCommand]
+        private async Task NavigateToLoginPage()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        }
+
+        [RelayCommand]
+        private async Task NavigateToRegisterPage()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        }
     }
 }
