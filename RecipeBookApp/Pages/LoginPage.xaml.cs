@@ -6,4 +6,14 @@ public partial class LoginPage : ContentPage
     {
         InitializeComponent();
     }
+
+    private async void Clicked_Login(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+    }
+
+    private async void Clicked_Skip(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync($"//{nameof(OnboardingPage)}");
+    }
 }
