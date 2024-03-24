@@ -39,6 +39,7 @@ namespace RecipeBookApp.ViewModel
             }
             IsBuisy = true;
             //Api call to login
+            //TODO: finish api
             await Task.Delay(100);
             await SkipForNow();
             IsBuisy = false;
