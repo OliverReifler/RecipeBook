@@ -8,5 +8,6 @@ public partial class OnboardingPage : ContentPage
     {
         InitializeComponent();
         BindingContext = vm;
+        Preferences.Default.Set(UIconstants.OnboardingShown, string.Empty);
     }
 }

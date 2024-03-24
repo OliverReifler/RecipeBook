@@ -17,7 +17,7 @@ namespace RecipeBookApp
 
             //check if onboarding screen has to be shown
             if (Preferences.Default.ContainsKey(UIconstants.OnboardingShown))
-                await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
+                await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
             else
                 await Shell.Current.GoToAsync($"//{nameof(OnboardingPage)}");
         }

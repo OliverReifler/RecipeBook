@@ -3,10 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipeBookApp.Pages.LoginPage"
              Title="Login">
-    <VerticalStackLayout>
-        <Label 
-            Text="Login!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid RowDefinitions="2*, 3*">
+        <Border
+            Grid.Row="0"
+            StrokeShape="RoundRectangle 125"
+            StrokeThickness="15"
+            Stroke="{StaticResource Primary}"
+            HeightRequest="250"
+            WidthRequest="250"
+            VerticalOptions="Center">
+            <Image
+                Grid.Row="0"
+                Source="chef.png"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Aspect="AspectFill" />
+        </Border>
+    </Grid>
 </ContentPage>

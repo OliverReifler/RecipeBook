@@ -54,6 +54,7 @@
             Text="Login"
             FontAttributes="Bold"
             VerticalOptions="End" 
+            Clicked="Clicked_Login"
             Command="{Binding NavigateToLoginPageCommand}" />
         <Button
             Grid.Row="1"
@@ -61,12 +62,14 @@
             Text="Register"
             FontAttributes="Bold"
             VerticalOptions="End" 
+            Clicked="Clicked_Register"
             Command="{Binding NavigateToRegisterPageCommand}" />
         <Button
             Grid.ColumnSpan="2"
             Grid.Row="2"
             Text="Continue without login"
             FontAttributes="Bold"
-            Command="{Binding NavigateToHomePageCommand}" />
+            Clicked="Clicked_Continue"
+            Command="{Binding NavigateToHomePageCommand}"/>
     </Grid>
 </ContentPage>
