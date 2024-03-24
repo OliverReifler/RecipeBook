@@ -17,9 +17,6 @@
         <Image Source="recipes_chefhat.png" />
         <Label Text="Welcome tot the Recipe Book App"
                HeightRequest="300" />
-        <Button
-            Text="Go to previous"
-            FontAttributes="Bold"
-            Command="{Binding GoToPreviousCommand}" />
+        <Label Text="ToDo: Show latest 10 recipes or favorites"/>
     </VerticalStackLayout>
 </ContentPage>

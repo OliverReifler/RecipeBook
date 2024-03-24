@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipeBookApp.Pages.LoginPage"
              Title="Login"
-             BackgroundColor="{StaticResource BgColor}">
+             BackgroundColor="{StaticResource BgColor}"
+             xmlns:loginviewmodel="clr-namespace:RecipeBookApp.ViewModel"
+             xmlns:models="clr-namespace:RecipeBookApp.Models"
+             x:DataType="loginviewmodel:LoginViewModel">
 
     <Grid RowDefinitions="2*, 3*">
         <Border
@@ -26,14 +29,35 @@
         <ScrollView Grid.Row="1" Padding="15">
             <VerticalStackLayout Spacing="30">
                 <Grid ColumnDefinitions="*,auto">
-                    <Label Grid.Column="0" Text="Login" FontSize="30" FontAttributes="Bold" LineHeight="1.2" TextColor="{StaticResource Primary}" />
-                    <Label Grid.Column="1" Text="Switch to Register" VerticalOptions="Center" HorizontalOptions="End" Padding="5" FontAttributes="Italic" TextDecorations="Underline" />
+                    <Label Grid.Column="0" Text="Login" FontSize="30" FontAttributes="Bold" LineHeight="1.2" TextColor="{StaticResource Primary}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding IsRegistrationMode}" Value="True">
+                                <Setter Property="Text" Value="Register" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Label Grid.Column="1" Text="Switch to Register" VerticalOptions="Center" HorizontalOptions="End" Padding="5" FontAttributes="Italic" TextDecorations="Underline" TextColor="{StaticResource Primary}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding IsRegistrationMode}" Value="True">
+                                <Setter Property="Text" Value="Switch to Login" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToggleModeCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </Grid>
                 <VerticalStackLayout>
-                    <Entry Placeholder="Enter name" PlaceholderColor="{StaticResource Tertiary}" FontAttributes="Italic" FontSize="13" />
-                    <Entry Placeholder="Enter email" PlaceholderColor="{StaticResource Tertiary}" Keyboard="Email" FontAttributes="Italic" FontSize="13" />
-                    <Entry Placeholder="Enter password" PlaceholderColor="{StaticResource Tertiary}" IsPassword="True" FontAttributes="Italic" FontSize="13" />
-                    <Button Text="Login" Style="{StaticResource btnPrimary}" Clicked="Clicked_Login" />
+                    <Entry Placeholder="Enter name" Text="{Binding Model.Name}" PlaceholderColor="{StaticResource Tertiary}" FontAttributes="Italic" FontSize="13" IsVisible="{Binding IsRegistrationMode}" />
+                    <Entry Placeholder="Enter email" Text="{Binding Model.Email}" PlaceholderColor="{StaticResource Tertiary}" Keyboard="Email" FontAttributes="Italic" FontSize="13" />
+                    <Entry Placeholder="Enter password" Text="{Binding Model.Password}" PlaceholderColor="{StaticResource Tertiary}" IsPassword="True" FontAttributes="Italic" FontSize="13" />
+                    <Button Text="Login" Style="{StaticResource btnPrimary}" Command="{Binding SubmitCommand}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding IsRegistrationMode}" Value="True">
+                                <Setter Property="Text" Value="Register" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
                 </VerticalStackLayout>
                 <Grid ColumnDefinitions="*, Auto, *">
                     <BoxView Grid.Column="0"
@@ -51,5 +75,11 @@
                 </Grid>
             </VerticalStackLayout>
         </ScrollView>
+        <ActivityIndicator VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           IsRunning="{Binding IsBuisy}"
+                           Color="{StaticResource Primary}"
+                           HeightRequest="30"
+                           WidthRequest="30" />
     </Grid>
 </ContentPage>

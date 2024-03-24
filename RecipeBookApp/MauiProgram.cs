@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using RecipeBookApp.Models;
 using RecipeBookApp.Pages;
 using RecipeBookApp.ViewModel;
 
@@ -34,7 +35,8 @@ namespace RecipeBookApp
                 .AddTransient<HomePage>()
                 .AddTransient<HomeViewModel>()
                 .AddTransient<RecipesPage>()
-                .AddTransient<RecipeViewModel>();
+                .AddTransient<RecipeViewModel>()
+                .AddTransient<LoginRegisterModel>();
 
             return builder.Build();
         }

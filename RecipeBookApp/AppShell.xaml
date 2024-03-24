@@ -10,7 +10,7 @@
     Title="RecipeBookApp">
 
     <Shell.Behaviors>
-        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent"/>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
     </Shell.Behaviors>
     <ShellContent
         Title="Main"
@@ -39,11 +39,13 @@
         Title="Home"
         Icon="appicon"
         ContentTemplate="{DataTemplate pages:HomePage}"
-        Route="HomePage" />
+        Route="HomePage"
+        Shell.NavBarIsVisible="False" />
         <ShellContent
         Title="Recipes"
         Icon="appicon"
         ContentTemplate="{DataTemplate pages:RecipesPage}"
-        Route="RecipesPage" />
+        Route="RecipesPage"
+        Shell.NavBarIsVisible="False" />
     </TabBar>
 </Shell>
