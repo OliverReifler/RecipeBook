@@ -20,7 +20,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeBook.Business.Test", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeBookAPI", "WebApplication1\RecipeBookAPI.csproj", "{C59F74BE-973B-44B3-8A19-EB54361DABAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeBookApp", "RecipeBookApp\RecipeBookApp.csproj", "{864EE22B-4A6E-4525-B5A8-0251B89A4526}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeBookApp", "RecipeBookApp\RecipeBookApp.csproj", "{864EE22B-4A6E-4525-B5A8-0251B89A4526}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F58589E1-9F3B-4A44-941D-E5D494E679FB} = {F58589E1-9F3B-4A44-941D-E5D494E679FB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiLib", "MauiLib\MauiLib.csproj", "{8A75A29D-A1EC-4770-BCDC-A3A0A8EB28D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +59,10 @@ Global
 		{864EE22B-4A6E-4525-B5A8-0251B89A4526}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{864EE22B-4A6E-4525-B5A8-0251B89A4526}.Release|Any CPU.Build.0 = Release|Any CPU
 		{864EE22B-4A6E-4525-B5A8-0251B89A4526}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8A75A29D-A1EC-4770-BCDC-A3A0A8EB28D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A75A29D-A1EC-4770-BCDC-A3A0A8EB28D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A75A29D-A1EC-4770-BCDC-A3A0A8EB28D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A75A29D-A1EC-4770-BCDC-A3A0A8EB28D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
