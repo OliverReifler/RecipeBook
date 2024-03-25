@@ -7,9 +7,9 @@ namespace RecipeBookApp.Services
     {
         //name clash?
         [Post("/api/AuthController/login")]
-        Task<RecipeBook.Domain.Dtos.ApiResponse<AuthResponseDto>> Login(LoginRequestDto loginDto);
+        Task<RecipeBook.Domain.Dtos.ApiResponse<AuthResponseDto>> LoginAsync(LoginRequestDto loginDto);
 
         [Post("/api/AuthController/register")]
-        Task<RecipeBook.Domain.Dtos.ApiResponse<AuthResponseDto>> Register(RegisterRequestDto registerDto);
+        Task<RecipeBook.Domain.Dtos.ApiResponse<AuthResponseDto>> RegisterAsync(RegisterRequestDto registerDto);
     }
 }

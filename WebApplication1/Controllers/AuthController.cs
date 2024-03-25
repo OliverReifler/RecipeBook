@@ -16,13 +16,13 @@ namespace RecipeBookAPI.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<ApiResponse<AuthResponseDto>> Login(LoginRequestDto loginDto)
+        public async Task<ApiResponse<AuthResponseDto>> LoginAsync(LoginRequestDto loginDto)
         {
             return await _authService.LoginAsync(loginDto);
         }
 
         [HttpPost("register")]
-        public async Task<ApiResponse<AuthResponseDto>> Register(RegisterRequestDto registerDto)
+        public async Task<ApiResponse<AuthResponseDto>> RegisterAsync(RegisterRequestDto registerDto)
         {
             return await _authService.RegisterAsync(registerDto);
         }

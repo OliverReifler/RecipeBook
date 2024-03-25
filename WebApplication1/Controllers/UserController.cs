@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RecipeBook.Domain.Dtos;
+using RecipeBook.Domain.Entities;
 using RecipeBook.Domain.Interfaces;
 
 namespace RecipeBookAPI.Controllers
@@ -20,13 +22,13 @@ namespace RecipeBookAPI.Controllers
         //    Convert.ToInt32(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
         [HttpGet("GetLatest")]
-        public async Task<IActionResult> GetLatestRecipes(int count)
+        public async Task<ApiResponse<IEnumerable<Recipe>>> GetLatestRecipes(int count)
         {
             try
             {
-                return Ok(await _recipeBookService.GetLatestRecipes(count));
+                return ApiResponse<IEnumerable<Recipe>>.Success(await _recipeBookService.GetLatestRecipes(count));
             }
-            catch (Exception ex) { return BadRequest(ex.Message); }
+            catch (Exception ex) { return ApiResponse<IEnumerable<Recipe>>.Fail(ex.Message); }
         }
     }
 }

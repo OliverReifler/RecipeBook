@@ -36,14 +36,25 @@ namespace WebApplication1.Controllers
 
         [HttpGet]
         [Route("GetAllRecipes")]
-        public async Task<IActionResult> GetAllRecipes()
+        public async Task<ApiResponse<IEnumerable<Recipe>>> GetAllRecipes()
         {
             try
             {
-                return Ok(await _recipeBookService.GetAllRecipes());
+                return ApiResponse<IEnumerable<Recipe>>.Success(await _recipeBookService.GetAllRecipes());
             }
-            catch (ArgumentException x) { return BadRequest(x.Message); }
+            catch (Exception ex) { return ApiResponse<IEnumerable<Recipe>>.Fail(ex.Message); }
         }
+
+        //[HttpGet]
+        //[Route("GetAllRecipes")]
+        //public async Task<IActionResult> GetAllRecipes()
+        //{
+        //    try
+        //    {
+        //        return Ok(await _recipeBookService.GetAllRecipes());
+        //    }
+        //    catch (ArgumentException x) { return BadRequest(x.Message); }
+        //}
 
         [HttpPost]
         [Route("PostRecipe")]

@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using RecipeBookApp.Models;
 using RecipeBookApp.Pages;
+using RecipeBookApp.Services;
 
 namespace RecipeBookApp.ViewModel
 {
@@ -16,6 +17,13 @@ namespace RecipeBookApp.ViewModel
 
         [ObservableProperty]
         private bool _isFirstVisit;
+
+        private readonly AppAuthService _authService;
+
+        public LoginViewModel(AppAuthService appAuthService)
+        {
+            _authService = appAuthService;
+        }
 
         partial void OnIsFirstVisitChanging(bool value)
         {
@@ -38,10 +46,13 @@ namespace RecipeBookApp.ViewModel
                 return;
             }
             IsBuisy = true;
-            //Api call to login
+
             //TODO: finish api
-            await Task.Delay(100);
-            await SkipForNow();
+            bool status = await _authService.LoginRegisterAsync(Model);
+            if (status)
+            {
+                await SkipForNow();
+            }
             IsBuisy = false;
         }
     }

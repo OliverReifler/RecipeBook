@@ -26,6 +26,7 @@ namespace RecipeBookApp
             builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<MainPage>()
+                .AddSingleton<CommonService>()
                 .AddSingleton<MainViewModel>()
                 .AddSingleton<IConnectivity>(Connectivity.Current)
                 .AddTransient<OnboardingPage>()
@@ -38,7 +39,8 @@ namespace RecipeBookApp
                 .AddTransient<HomeViewModel>()
                 .AddTransient<RecipesPage>()
                 .AddTransient<RecipeViewModel>()
-                .AddTransient<LoginRegisterModel>();
+                .AddTransient<LoginRegisterModel>()
+                .AddTransient<AppAuthService>();
 
             ConfigureRefit(builder.Services);
 
@@ -48,7 +50,24 @@ namespace RecipeBookApp
         private static void ConfigureRefit(IServiceCollection services)
         {
             services.AddRefitClient<IAuthApi>()
-                .ConfigureHttpClient(httpClient => httpClient.BaseAddress = new Uri(AppConstants.BaseApiUrl));
+                .ConfigureHttpClient(SetHttpClient);
+
+            services.AddRefitClient<IRecipeBookApi>()
+                .ConfigureHttpClient(SetHttpClient);
+
+            services.AddRefitClient<IUserApi>(sp =>
+            {
+                var commonService = sp.GetRequiredService<CommonService>();
+                return new RefitSettings()
+                {
+                    AuthorizationHeaderValueGetter = (_, __) => Task.FromResult(commonService.Token ?? string.Empty)
+                };
+            })
+
+                .ConfigureHttpClient(SetHttpClient);
+
+            static void SetHttpClient(HttpClient httpClient) =>
+                httpClient.BaseAddress = new Uri(AppConstants.BaseApiUrl);
         }
     }
 }
