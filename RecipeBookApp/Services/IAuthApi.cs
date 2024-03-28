@@ -3,13 +3,13 @@ using Refit;
 
 namespace RecipeBookApp.Services
 {
+    [Headers("Content-Type: application/json;accept: text/plain")]
     public interface IAuthApi
     {
-        //name clash?
-        [Post("/api/AuthController/login")]
-        Task<RecipeBook.Domain.Dtos.ApiResponse<AuthResponseDto>> LoginAsync(LoginRequestDto loginDto);
+        [Post("/authcontroller/login")]
+        Task<RecipeBook.Domain.Dtos.ApiResponse<AuthResponseDto>> LoginAsync([Body] LoginRequestDto loginDto);
 
-        [Post("/api/AuthController/register")]
-        Task<RecipeBook.Domain.Dtos.ApiResponse<AuthResponseDto>> RegisterAsync(RegisterRequestDto registerDto);
+        [Post("/authcontroller/register")]
+        Task<RecipeBook.Domain.Dtos.ApiResponse<AuthResponseDto>> RegisterAsync([Body] RegisterRequestDto registerDto);
     }
 }

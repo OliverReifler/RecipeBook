@@ -5,7 +5,7 @@ using RecipeBook.Domain.Interfaces;
 namespace RecipeBookAPI.Controllers
 {
     [ApiController]
-    [Route("AuthController")]
+    [Route("authcontroller")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
@@ -15,7 +15,7 @@ namespace RecipeBookAPI.Controllers
             _authService = authService;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<ApiResponse<AuthResponseDto>> LoginAsync(LoginRequestDto loginDto)
         {
             return await _authService.LoginAsync(loginDto);

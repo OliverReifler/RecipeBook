@@ -7,7 +7,7 @@ using RecipeBook.Domain.Interfaces;
 namespace RecipeBookAPI.Controllers
 {
     [ApiController]
-    [Route("UserController")]
+    [Route("usercontroller")]
     [Authorize]
     public class UserController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace RecipeBookAPI.Controllers
         //private int _userId =>
         //    Convert.ToInt32(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
 
-        [HttpGet("GetLatest")]
+        [HttpGet("getlatest")]
         public async Task<ApiResponse<IEnumerable<Recipe>>> GetLatestRecipes(int count)
         {
             try

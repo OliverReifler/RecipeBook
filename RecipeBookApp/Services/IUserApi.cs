@@ -6,7 +6,7 @@ namespace RecipeBookApp.Services
     [Headers("Authorization: Bearer")]
     public interface IUserApi
     {
-        [Get("/api/UserController/GetLatest")]
+        [Get("/usercontroller/getlatest")]
         Task<RecipeBook.Domain.Dtos.ApiResponse<IEnumerable<Recipe>>> GetLatestRecipes(int count);
     }
 }

@@ -5,13 +5,13 @@ namespace RecipeBookApp.Models
     public partial class LoginRegisterModel : ObservableObject
     {
         [ObservableProperty]
-        private string _name;
+        private string? _name;
 
         [ObservableProperty]
-        private string _password;
+        private string? _password;
 
         [ObservableProperty]
-        private string _email;
+        private string? _email;
 
         public bool IsNewUser => !string.IsNullOrWhiteSpace(Name);
 

@@ -16,24 +16,31 @@ namespace RecipeBookApp.Services
 
         public async Task<bool> LoginRegisterAsync(LoginRegisterModel lrm)
         {
-            ApiResponse<AuthResponseDto> apiResponse;
-
-            if (lrm.IsNewUser) //Go to register
+            ApiResponse<AuthResponseDto> apiResponse = null;
+            try
             {
-                apiResponse = await _authApi.RegisterAsync(new RegisterRequestDto()
+                if (lrm.IsNewUser) //Go to register
                 {
-                    Name = lrm.Name,
-                    Email = lrm.Email,
-                    Password = lrm.Password,
-                });
+                    apiResponse = await _authApi.RegisterAsync(new RegisterRequestDto()
+                    {
+                        Name = lrm.Name,
+                        Email = lrm.Email,
+                        Password = lrm.Password,
+                    });
+                }
+                else //Go to Login
+                {
+                    apiResponse = await _authApi.LoginAsync(new LoginRequestDto()
+                    {
+                        Email = lrm.Email,
+                        Password = lrm.Password,
+                    });
+                }
             }
-            else //Go to Login
+            catch (Refit.ApiException ex)
             {
-                apiResponse = await _authApi.LoginAsync(new LoginRequestDto()
-                {
-                    Email = lrm.Email,
-                    Password = lrm.Password,
-                });
+                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "Ok");
+                return false;
             }
             if (!apiResponse.IsSuccess)
             {

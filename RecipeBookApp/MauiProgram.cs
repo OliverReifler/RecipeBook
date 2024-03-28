@@ -63,7 +63,6 @@ namespace RecipeBookApp
                     AuthorizationHeaderValueGetter = (_, __) => Task.FromResult(commonService.Token ?? string.Empty)
                 };
             })
-
                 .ConfigureHttpClient(SetHttpClient);
 
             static void SetHttpClient(HttpClient httpClient) =>
